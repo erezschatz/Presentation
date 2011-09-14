@@ -1,0 +1,79 @@
+\documentclass[
+	mode=present,
+	style=paintings,
+	size=14pt,
+	paper=screen
+]{powerdot}
+\usepackage{url}
+\pdsetup{
+	palette=PearlEarring
+}
+\title{Tools of the trade}
+\author{Erez Schatz}
+\date {\today}
+\begin{document}
+\maketitle
+
+\section{local::lib}
+\begin{slide}{why local::lib?}
+	\begin{itemize}
+	\item Shared Environment \par \pause
+	\item Web Host  \par \pause
+	\item no root \par \pause
+	\item have root, want upgrade
+        \end{itemize}
+\end{slide}
+\begin{slide}{local::lib}
+	\texttt{wget http://search.cpan.org/.../local-lib-x.xx.tar.gz} \par \pause
+	\texttt{perl Makefile.PL --bootstrap} \par \pause
+	\texttt{perl Makefile.PL --bootstrap=\~/foo}
+\end{slide}
+\section{cpanminus}
+\begin{slide}{why cpanminus?}
+        \begin{itemize}
+        \item quick'n'dirty \par \pause
+        \item simple, sensible defaults \par \pause
+        \item one command to rule them all
+        \end{itemize}
+\end{slide}
+\begin{slide}{cpanminus}
+	\onslide{1-}{App::cpanminus}\par \pause
+        \onslide*{2}{\texttt{curl -L http://cpanmin.us | perl - --sudo App::cpanminus}} \par \pause
+        \onslide{3}{\texttt{curl -L http://cpanmin.us | perl - App::cpanminus}}
+
+\end{slide}
+\begin{slide}{cpanminus}
+        \texttt{cpanm Foo::Bar} \par \pause
+        Install or update module + dependencies \par
+        \texttt{perldoc cpanm}
+\end{slide}
+\section{Perlbrew}
+\begin{slide}{Why Perlbrew}
+        \begin{itemize}
+          \item Install different versions of perl \par \pause
+          \item Test your app/module against different versions \par \pause
+          \item Run the latest perl \par \pause
+          \item Separately from the system perl
+        \end{itemize}
+\end{slide}
+\begin{slide}{Perlbrew}
+	App::Perlbrew
+\end{slide}
+\section{pm-uninstall}
+\begin{slide}{pm-uninstall}
+	App::pmuninstall\par \pause
+\end{slide}
+\section{That's not all, folks!}
+\begin{slide}{That's not all, folks!}
+	\onslide*{1}{ack}\par
+	\onslide{2-}{App::Ack}\par
+	\onslide*{3}{cpandoc}\par
+	\onslide{4-}{Pod::Cpandoc}\par
+	\onslide*{5}{dzil}\par
+	\onslide{6-}{Dist::Zilla}\par
+	\onslide*{7}{mversion}\par
+	\onslide{8-}{Module::Version}\par
+	\onslide{9}{CPAN::Reporter}
+\end{slide}
+\section {That's all, folks!}
+\end{document}
