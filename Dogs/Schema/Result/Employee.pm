@@ -39,6 +39,12 @@ __PACKAGE__->set_primary_key('id');
 __PACKAGE__->add_unique_constraint( [ qw/breed_id/ ] );
 __PACKAGE__->add_unique_constraint( [ qw/dept_id/ ] );
 
+__PACKAGE__->belongs_to(
+    'department'  => 'Dogs::Schema::Result::Department' => {
+        'foreign.id' => 'self.dept_id'
+    }
+);
+
 __PACKAGE__->has_one(
     'breed'  => 'Dogs::Schema::Result::Breed' => {
         'foreign.id' => 'self.breed_id'
@@ -53,12 +59,6 @@ __PACKAGE__->has_many(
 
 __PACKAGE__->many_to_many(
     'vices' => 'dog_vice' => 'vice'
-);
-
-__PACKAGE__->belongs_to(
-    'department'  => 'Dogs::Schema::Result::Department' => {
-        'foreign.id' => 'self.dept_id'
-    }
 );
 
 1;
