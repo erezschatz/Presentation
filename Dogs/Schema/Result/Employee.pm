@@ -14,6 +14,10 @@ __PACKAGE__->add_columns(
         is_nullable    => 0,
         default_value  => 'Rover',
     },
+    sex => {
+        data_type      => 'varchar',
+        is_nullable    => 0,
+    },
     breed_id => {
         data_type      => 'integer',
         is_nullable    => 0,
@@ -44,10 +48,9 @@ __PACKAGE__->many_to_many(
 );
 
 __PACKAGE__->belongs_to(
-    'department'  => 'Dogs::Schema::Result::' => {
+    'department'  => 'Dogs::Schema::Result::Department' => {
         'foreign.id' => 'self.dept_id'
     }
 );
-
 
 1;

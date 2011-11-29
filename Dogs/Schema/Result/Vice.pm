@@ -16,9 +16,22 @@ __PACKAGE__->add_columns(
     punishment => {
         data_type      => 'varchar',
         is_nullable    => 1,
+        default_value  => 'Paper roll',
     },
 );
 
 __PACKAGE__->set_primary_key('id');
+
+
+__PACKAGE__->has_many(
+    'dog_vice'  => 'Dogs::Schema::Result::DogVice' => {
+        'foreign.vice_id' => 'self.id'
+    }
+);
+
+__PACKAGE__->many_to_many(
+    'employees' => 'dog_vice' => 'employee'
+);
+
 
 1;
