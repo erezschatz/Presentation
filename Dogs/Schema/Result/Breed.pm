@@ -12,10 +12,16 @@ __PACKAGE__->add_columns(
     breed => {
         data_type      => 'varchar',
         is_nullable    => 0,
-        default_value  => 'Mongrel',
     },
 );
 
 __PACKAGE__->set_primary_key('id');
+
+__PACKAGE__->belongs_to(
+    employee => 'Dogs::Schema::Result::Employee' => {
+        'foreign.breed_id' => 'self.id'
+    }
+);
+
 
 1;
