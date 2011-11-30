@@ -16,6 +16,7 @@ or
 
 $schema->resultset('Employee')->create( {
     'name'       => 'Rexy',
+    'dog_tag'    => rand,
     'breed'      => {
         'name' => 'St. Bernard',
     },
@@ -23,7 +24,7 @@ $schema->resultset('Employee')->create( {
         name => 'Sales'
     },
     'sex'        => 1,
-    'timestamp'  => '\now()',
+    'timestamp'  => \'now()',
 } );
 
 =cut
@@ -78,7 +79,7 @@ $schema->resultset('Employee')->find({
 
 =cut
 
-#show all mongrels
+=begin show all mongrels
 
 #$schema->resultset('Employee')->add_new_emp( 'Rover', 'Mongrel', 'IT' ) ;
 
@@ -98,3 +99,5 @@ my @employees = $schema->resultset('Employee')->search( {
 } )->all;
 
 print $_->name foreach @employees;
+
+=cut
