@@ -80,7 +80,8 @@ $schema->resultset('Employee')->find({
 
 #show all mongrels
 
-$schema->resultset('Employee')->add_new_emp( 'Rover', 'Mongrel', 'IT' ) ;
+#$schema->resultset('Employee')->add_new_emp( 'Rover', 'Mongrel', 'IT' ) ;
+
 my @employees = $schema->resultset('Employee')->search( {
     'breed.name' => 'Mongrel'
 }, {
