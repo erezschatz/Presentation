@@ -58,7 +58,7 @@ $schema->resultset('Employee')->find( {
 
 =cut
 
-#add vice
+=begin add vice
 
 $schema->resultset('Employee')->find({
     'name' => 'Rexy'
@@ -68,8 +68,32 @@ $schema->resultset('Employee')->find({
 
 #remove vice
 
+$schema->resultset('Employee')->find({
+    'name' => 'Rexy'
+})->delete_related(
+    'vices' => {
+        'type' => 'Drinking from toilet bowl'
+    }
+);
+
+=cut
+
 #show all mongrels
+
+$schema->resultset('Employee')->add_new_emp( 'Rover', 'Mongrel', 'IT' ) ;
+my @employees = $schema->resultset('Employee')->search( {
+    'breed.name' => 'Mongrel'
+}, {
+    'join' => 'breed'
+} )->all;
 
 #show all mongrels named Rover
 
-#punish all dalmatians
+@employees = $schema->resultset('Employee')->search( {
+    'me.name'    => 'Rover',
+    'breed.name' => 'Mongrel'
+}, {
+    'join' => 'breed'
+} )->all;
+
+print $_->name foreach @employees;

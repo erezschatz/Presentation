@@ -15,6 +15,10 @@ __PACKAGE__->add_columns(
         is_nullable       => 0,
         default_value     => 'Rover',
     },
+    dog_tag => {
+        data_type         => 'integer',
+        is_nullable       => 0,
+    },
     sex => {
         data_type         => 'varchar',
         is_nullable       => 0,
@@ -35,8 +39,8 @@ __PACKAGE__->add_columns(
 );
 
 __PACKAGE__->set_primary_key('id');
-__PACKAGE__->add_unique_constraint( [ qw/breed_id/ ] );
-__PACKAGE__->add_unique_constraint( [ qw/dept_id/ ] );
+__PACKAGE__->add_unique_constraint( [ qw/dog_tag/ ] );
+
 
 __PACKAGE__->belongs_to(
     'department'  => 'Dogs::Schema::Result::Department' => {
