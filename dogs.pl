@@ -6,7 +6,7 @@ use warnings;
 use Dogs::Schema;
 
 my $schema = Dogs::Schema->connect('dbi:SQLite:dogs.db');
-#$schema->deploy;
+#schema->deploy;
 
 =begin add new dog
 
@@ -15,21 +15,26 @@ $schema->resultset('Employee')->add_new_emp( 'Rexy', 'St. Bernard', 'Sales' ) ;
 or
 
 $schema->resultset('Employee')->create( {
-    name => 'Rexy',
-    breed => {
-        name => 'St. Bernard',
+    'name'       => 'Rexy',
+    'breed'      => {
+        'name' => 'St. Bernard',
     },
-    department => {
+    'department' => {
         name => 'Sales'
     },
-    sex => 1,
-    timestamp => '\now()',
+    'sex'        => 1,
+    'timestamp'  => '\now()',
 } );
 
 =cut
 
 =begin get all dogs in a department
+
 my @employees = $schema->resultset('Department')->employees_in_dept('Sales');
+
+or
+
+=cut
 
 my @employees = $schema->resultset('Department')->search( {
     'me.name' => 'Sales'
@@ -37,7 +42,7 @@ my @employees = $schema->resultset('Department')->search( {
     'join' => 'employee'
 })->all;
 
-print $employees[0]->name;
+print $_->name foreach @employees;
 
 =cut
 
