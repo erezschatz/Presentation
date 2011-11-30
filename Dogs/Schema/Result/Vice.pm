@@ -9,7 +9,7 @@ __PACKAGE__->add_columns(
         is_nullable    => 0,
         auto_increment => 1,
     },
-    vice => {
+    type => {
         data_type      => 'varchar',
         is_nullable    => 0,
     },

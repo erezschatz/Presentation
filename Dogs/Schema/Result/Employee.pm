@@ -52,7 +52,7 @@ __PACKAGE__->has_one(
 
 __PACKAGE__->has_many(
     'dog_vice'  => 'Dogs::Schema::Result::DogVice' => {
-        'foreign.dog_id' => 'self.id'
+        'foreign.employee_id' => 'self.id'
     }
 );
 
