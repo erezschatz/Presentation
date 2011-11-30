@@ -6,13 +6,12 @@ use warnings;
 use Dogs::Schema;
 
 my $schema = Dogs::Schema->connect('dbi:SQLite:dogs.db');
+
 #$schema->deploy;
 
 =begin add new dog
 
 $schema->resultset('Employee')->add_new_emp( 'Rexy', 'St. Bernard', 'Sales' ) ;
-
-or
 
 $schema->resultset('Employee')->create( {
     'name'       => 'Rexy',
@@ -33,8 +32,6 @@ $schema->resultset('Employee')->create( {
 
 my @employees = $schema->resultset('Department')->employees_in_dept('Sales');
 
-or
-
 my @employees = $schema->resultset('Department')->search( {
     'me.name' => 'Sales'
 }, {
@@ -45,11 +42,9 @@ print $_->name foreach @employees;
 
 =cut
 
-
 =begin change dept
 
 $schema->resultset('Employee')->change_dept( 'Rexy', 'HR' );
-
 
 $schema->resultset('Employee')->find( {
     'name' => 'Rexy',
@@ -67,8 +62,6 @@ $schema->resultset('Employee')->find({
 })->add_to_vices( {
     'type' => 'Drinking from toilet bowl'
 });
-
-=cut
 
 #remove vice
 
