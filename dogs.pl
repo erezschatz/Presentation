@@ -24,7 +24,7 @@ $schema->resultset('Employee')->create( {
         name => 'Sales'
     },
     'sex'        => 1,
-    'timestamp'  => \'now()',
+    'timestamp'  => time,
 } );
 
 =cut
@@ -34,7 +34,6 @@ $schema->resultset('Employee')->create( {
 my @employees = $schema->resultset('Department')->employees_in_dept('Sales');
 
 or
-
 
 my @employees = $schema->resultset('Department')->search( {
     'me.name' => 'Sales'
@@ -46,14 +45,16 @@ print $_->name foreach @employees;
 
 =cut
 
-=begin change department
 
-$schema->resultset('Employee')->change_dept( 'Rexy, 'HR' );
+=begin change dept
+
+$schema->resultset('Employee')->change_dept( 'Rexy', 'HR' );
+
 
 $schema->resultset('Employee')->find( {
     'name' => 'Rexy',
     } )->department->update( {
-        'name' => 'HR'
+        'name' => 'Sales'
     },
 );
 
@@ -67,13 +68,19 @@ $schema->resultset('Employee')->find({
     'type' => 'Drinking from toilet bowl'
 });
 
+=cut
+
 #remove vice
+
+my $vice_id = $schema->resultset('Vice')->find({
+    'type' => 'Drinking from toilet bowl'
+})->id;
 
 $schema->resultset('Employee')->find({
     'name' => 'Rexy'
 })->delete_related(
-    'vices' => {
-        'type' => 'Drinking from toilet bowl'
+    'dog_vice' => {
+        'vice_id' => $vice_id
     }
 );
 

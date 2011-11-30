@@ -13,7 +13,8 @@ sub add_new_emp {
             'name' => $dept
         },
         'sex' => 1,
-        'timestamp' => '\now()'
+        'dog_tag' => rand,
+        'timestamp' => time
     } );
 }
 
