@@ -4,11 +4,10 @@ use base qw/DBIx::Class::ResultSet/;
 sub employees_in_dept {
     my $self = shift;
     my $name = shift;
-    return $self->search( {
+
+    return $self->find( {
         'me.name' => $name
-    }, {
-        'join' => 'employee'
-    })->all;
+    } )->search_related( 'employee' )->all;
 
 }
 

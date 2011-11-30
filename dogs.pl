@@ -32,11 +32,9 @@ $schema->resultset('Employee')->create( {
 
 my @employees = $schema->resultset('Department')->employees_in_dept('Sales');
 
-my @employees = $schema->resultset('Department')->search( {
+my @employees = $schema->resultset('Department')->find( {
     'me.name' => 'Sales'
-}, {
-    'join' => 'employee'
-})->all;
+})->search_related( 'employee' )->all;
 
 print $_->name foreach @employees;
 
