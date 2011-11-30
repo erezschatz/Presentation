@@ -29,7 +29,6 @@ __PACKAGE__->add_columns(
     },
     timestamp => {
         data_type         => 'datetime',
-        is_nullable       => 0,
         set_on_create     => 1,
         set_on_update     => 1,
     },

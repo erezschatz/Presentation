@@ -8,8 +8,11 @@ use Dogs::Schema;
 my $schema = Dogs::Schema->connect('dbi:SQLite:dogs.db');
 #$schema->deploy;
 
-
 =begin add new dog
+
+$schema->resultset('Employee')->add_new_emp( 'Rexy', 'St. Bernard', 'Sales' ) ;
+
+or
 
 $schema->resultset('Employee')->create( {
     name => 'Rexy',
@@ -20,15 +23,27 @@ $schema->resultset('Employee')->create( {
         name => 'Sales'
     },
     sex => 1,
+    timestamp => '\now()',
 } );
 
 =cut
 
-#get all dogs in a department
+=begin get all dogs in a department
+my @employees = $schema->resultset('Department')->employees_in_dept('Sales');
 
-#$schema->resultset('Department')->search( {
+my @employees = $schema->resultset('Department')->search( {
+    'me.name' => 'Sales'
+}, {
+    'join' => 'employee'
+})->all;
 
-#change department
+print $employees[0]->name;
+
+=cut
+
+=begin change department
+
+$schema->resultset('Employee')->change_dept( 'Rexy, 'HR' );
 
 $schema->resultset('Employee')->find( {
     name => 'Rexy',
@@ -36,6 +51,8 @@ $schema->resultset('Employee')->find( {
         name => 'HR'
     },
 );
+
+=cut
 
 #add vice
 
